@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Palette Generator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 2rem;
+        }
+
+        .upload-section {
+            text-align: center;
+            padding: 2rem;
+            border: 3px dashed #667eea;
+            border-radius: 15px;
+            background: #f8f9fa;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .upload-section:hover {
+            border-color: #764ba2;
+            background: #f0f0f0;
+        }
+
+        .upload-section.dragover {
+            border-color: #764ba2;
+            background: #e8e8ff;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .upload-button:hover {
+            transform: scale(1.05);
+        }
+
+        .demo-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .demo-button {
+            padding: 0.5rem 1rem;
+            background: white;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .demo-button:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .preview-section {
+            display: none;
+            margin-bottom: 2rem;
+        }
+
+        .preview-section.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .image-preview {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .image-preview img {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .color-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .color-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .color-swatch {
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .color-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .color-info h3 {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .color-value {
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            color: #666;
+            margin: 0.25rem 0;
+        }
+
+        .copy-notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            animation: slideIn 0.3s;
+        }
+
+        .copy-notification.show {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .instructions {
+            background: #f0f9ff;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .instructions h3 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .instructions ul {
+            margin-left: 1.5rem;
+            color: #555;
+        }
+
+        .instructions li {
+            margin: 0.5rem 0;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e5e7eb;
+        }
+
+        .back-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎨 Color Palette Generator</h1>
+            <p>Upload an image and extract its dominant colors instantly</p>
+        </div>
+
+        <div class="content">
+            <div class="instructions">
+                <h3>How It Works</h3>
+                <ul>
+                    <li>Upload any image (wedding dress, home decor, artwork, etc.)</li>
+                    <li>The tool analyzes the image and extracts the 6 most dominant colors</li>
+                    <li>Get RGB, HEX, and HSL values for each color</li>
+                    <li>Click any color card to copy its HEX code to your clipboard</li>
+                    <li>Perfect for color matching in design, fashion, and interior projects!</li>
+                </ul>
+            </div>
+
+            <div class="upload-section" id="uploadArea">
+                <h2 style="color: #667eea; margin-bottom: 1rem;">📸 Upload Your Image</h2>
+                <p style="color: #666; margin-bottom: 1.5rem;">Drag and drop or click to browse</p>
+                <input type="file" id="fileInput" class="file-input" accept="image/*">
+                <button class="upload-button" onclick="document.getElementById('fileInput').click()">
+                    Choose Image
+                </button>
+                <div class="demo-buttons">
+                    <button class="demo-button" onclick="loadDemoImage('sunset')">Try Sunset Demo</button>
+                    <button class="demo-button" onclick="loadDemoImage('flowers')">Try Flowers Demo</button>
+                    <button class="demo-button" onclick="loadDemoImage('ocean')">Try Ocean Demo</button>
+                </div>
+            </div>
+
+            <div class="preview-section" id="previewSection">
+                <h2 style="color: #667eea; margin-bottom: 1rem;">Your Image</h2>
+                <div class="image-preview">
+                    <img id="previewImage" src="" alt="Preview">
+                </div>
+
+                <h2 style="color: #667eea; margin-bottom: 1rem;">Extracted Color Palette</h2>
+                <div class="color-palette" id="colorPalette"></div>
+            </div>
+
+            <div class="back-link">
+                <a href="scratch.html">← Back to Projects Page</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="copy-notification" id="copyNotification">
+        ✓ Color code copied to clipboard!
+    </div>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const previewSection = document.getElementById('previewSection');
+        const previewImage = document.getElementById('previewImage');
+        const colorPalette = document.getElementById('colorPalette');
+        const copyNotification = document.getElementById('copyNotification');
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const file = e.dataTransfer.files[0];
+            if (file && file.type.startsWith('image/')) {
+                handleImageUpload(file);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleImageUpload(file);
+            }
+        });
+
+        function handleImageUpload(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                previewImage.src = e.target.result;
+                extractColors(e.target.result);
+                previewSection.classList.add('show');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function loadDemoImage(type) {
+            const demoImages = {
+                sunset: 'https://images.unsplash.com/photo-1495567720989-cebdbdd97913?w=600',
+                flowers: 'https://images.unsplash.com/photo-1490750967868-88aa4486c946?w=600',
+                ocean: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=600'
+            };
+            
+            previewImage.src = demoImages[type];
+            extractColors(demoImages[type]);
+            previewSection.classList.add('show');
+        }
+
+        function extractColors(imageSrc) {
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.src = imageSrc;
+            
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+                
+                canvas.width = img.width;
+                canvas.height = img.height;
+                ctx.drawImage(img, 0, 0);
+                
+                const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                const pixels = imageData.data;
+                
+                const colorMap = {};
+                
+                for (let i = 0; i < pixels.length; i += 40) {
+                    const r = pixels[i];
+                    const g = pixels[i + 1];
+                    const b = pixels[i + 2];
+                    
+                    const roundedR = Math.round(r / 20) * 20;
+                    const roundedG = Math.round(g / 20) * 20;
+                    const roundedB = Math.round(b / 20) * 20;
+                    
+                    const key = `${roundedR},${roundedG},${roundedB}`;
+                    colorMap[key] = (colorMap[key] || 0) + 1;
+                }
+                
+                const sortedColors = Object.entries(colorMap)
+                    .sort((a, b) => b[1] - a[1])
+                    .slice(0, 6)
+                    .map(entry => entry[0].split(',').map(Number));
+                
+                displayColors(sortedColors);
+            };
+        }
+
+        function displayColors(colors) {
+            colorPalette.innerHTML = '';
+            
+            colors.forEach((rgb, index) => {
+                const [r, g, b] = rgb;
+                const hex = rgbToHex(r, g, b);
+                const hsl = rgbToHsl(r, g, b);
+                
+                const colorCard = document.createElement('div');
+                colorCard.className = 'color-card';
+                colorCard.onclick = () => copyToClipboard(hex);
+                
+                colorCard.innerHTML = `
+                    <div class="color-swatch" style="background-color: rgb(${r}, ${g}, ${b})">
+                        Click to Copy
+                    </div>
+                    <div class="color-info">
+                        <h3>Color ${index + 1}</h3>
+                        <div class="color-value">HEX: ${hex}</div>
+                        <div class="color-value">RGB: ${r}, ${g}, ${b}</div>
+                        <div class="color-value">HSL: ${hsl}</div>
+                    </div>
+                `;
+                
+                colorPalette.appendChild(colorCard);
+            });
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + [r, g, b].map(x => {
+                const hex = x.toString(16);
+                return hex.length === 1 ? "0" + hex : hex;
+            }).join('');
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            let h, s, l = (max + min) / 2;
+            
+            if (max === min) {
+                h = s = 0;
+            } else {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                
+                switch (max) {
+                    case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                    case g: h = ((b - r) / d + 2) / 6; break;
+                    case b: h = ((r - g) / d + 4) / 6; break;
+                }
+            }
+            
+            h = Math.round(h * 360);
+            s = Math.round(s * 100);
+            l = Math.round(l * 100);
+            
+            return `${h}°, ${s}%, ${l}%`;
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                copyNotification.classList.add('show');
+                setTimeout(() => {
+                    copyNotification.classList.remove('show');
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
