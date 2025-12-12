@@ -1,0 +1,93 @@
+/* Custom Stylesheet for From-Scratch Page */
+/* This file demonstrates at least 4 style definitions with various properties */
+
+/* Style 1: Body styling with font family and color */
+body {
+    font-family: 'Georgia', serif;
+    color: #2c3e50;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Style 2: Heading styles with custom font family and color */
+h1, h2, h3 {
+    font-family: 'Arial', sans-serif;
+    color: #16a085;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+h2 {
+    color: #27ae60;
+    border-bottom: 3px solid #27ae60;
+    padding-bottom: 0.5rem;
+}
+
+/* Style 3: Paragraph text with font color specification */
+p {
+    color: #34495e;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+}
+
+/* Style 4: Link styling with color changes */
+a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+/* Div styling for content positioning and layout */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.navigation {
+    background-color: #34495e;
+    padding: 1rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.content-block {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-left: 5px solid #16a085;
+    border-radius: 5px;
+}
+
+/* Additional styling for images */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* List styling */
+ul, ol {
+    margin-left: 2rem;
+    color: #2c3e50;
+}
+
+li {
+    margin: 0.5rem 0;
+    line-height: 1.8;
+}
