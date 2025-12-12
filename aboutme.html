@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 100px 0 80px 0;
+            margin-top: 56px;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 2px;
+        }
+
+        .resume-section {
+            padding: 60px 0;
+        }
+
+        .resume-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resume-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .resume-item h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item .company {
+            color: var(--secondary-color);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .resume-item .date {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .project-card {
+            transition: transform 0.3s;
+            height: 100%;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-card .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            text-decoration: none;
+        }
+
+        footer {
+            background: #343a40;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Your Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resume">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1>Hello, I'm [Your Name]</h1>
+            <p class="lead">Information Systems Student | Developer | Problem Solver</p>
+            <a href="#resume" class="btn btn-light btn-lg">View My Resume</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="lead">I'm a passionate Information Systems student with a strong interest in technology, data analysis, and software development. I enjoy solving complex problems and building solutions that make a real impact.</p>
+                    <p>Throughout my academic journey, I've developed a diverse skill set spanning web development, database management, programming, and system analysis. I'm always eager to learn new technologies and take on challenging projects.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="Technology" class="img-fluid rounded shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="resume-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            
+            <!-- Education -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-mortarboard-fill me-2"></i>Education</h3>
+                <div class="resume-item">
+                    <h4>Bachelor of Science in Information Systems</h4>
+                    <p class="company">Your University</p>
+                    <p class="date">Expected Graduation: May 2025</p>
+                    <ul>
+                        <li>GPA: 3.7/4.0</li>
+                        <li>Relevant Coursework: Database Management, Web Development, Data Analytics, Systems Analysis, Software Engineering</li>
+                        <li>Dean's List: Fall 2023, Spring 2024</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-briefcase-fill me-2"></i>Experience</h3>
+                
+                <div class="resume-item">
+                    <h4>IT Intern</h4>
+                    <p class="company">ABC Technology Company</p>
+                    <p class="date">May 2024 - August 2024</p>
+                    <ul>
+                        <li>Assisted in developing and maintaining internal web applications using HTML, CSS, and JavaScript</li>
+                        <li>Collaborated with database administrators to optimize SQL queries, improving performance by 25%</li>
+                        <li>Provided technical support to 50+ employees, resolving hardware and software issues</li>
+                        <li>Documented IT procedures and created user guides for new software implementations</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Student Technology Assistant</h4>
+                    <p class="company">University IT Department</p>
+                    <p class="date">September 2023 - Present</p>
+                    <ul>
+                        <li>Support students and faculty with technical issues in computer labs</li>
+                        <li>Maintain and troubleshoot hardware and software systems</li>
+                        <li>Train new student assistants on support procedures and ticketing systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-gear-fill me-2"></i>Technical Skills</h3>
+                <div class="resume-item">
+                    <h4>Programming & Development</h4>
+                    <span class="skill-badge">HTML/CSS</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Java</span>
+                    <span class="skill-badge">React</span>
+                    <span class="skill-badge">Node.js</span>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Database & Data Analysis</h4>
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">MongoDB</span>
+                    <span class="skill-badge">Tableau</span>
+                    <span class="skill-badge">Excel</span>
+                    <span class="skill-badge">Power BI</span>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Tools & Platforms</h4>
+                    <span class="skill-badge">Git/GitHub</span>
+                    <span class="skill-badge">VS Code</span>
+                    <span class="skill-badge">Jira</span>
+                    <span class="skill-badge">AWS</span>
+                    <span class="skill-badge">Docker</span>
+                </div>
+            </div>
+
+            <!-- Awards & Honors -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-trophy-fill me-2"></i>Awards & Honors</h3>
+                <div class="resume-item">
+                    <ul>
+                        <li><strong>Dean's List</strong> - Fall 2023, Spring 2024</li>
+                        <li><strong>Academic Scholarship</strong> - Merit-based scholarship for academic excellence (2023-2024)</li>
+                        <li><strong>Hackathon Winner</strong> - 1st Place, University Tech Challenge (Spring 2024)</li>
+                        <li><strong>IS Student Organization</strong> - Vice President (2024-2025)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <i class="bi bi-globe me-2"></i>E-Commerce Website
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Full-stack e-commerce platform with user authentication, shopping cart, and payment integration.</p>
+                            <p><small class="text-muted"><strong>Tech:</strong> React, Node.js, MongoDB</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <i class="bi bi-graph-up me-2"></i>Sales Analytics Dashboard
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Interactive dashboard visualizing sales data with filters, charts, and predictive analytics.</p>
+                            <p><small class="text-muted"><strong>Tech:</strong> Python, Tableau, SQL</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <i class="bi bi-phone me-2"></i>Mobile Task Manager
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Cross-platform mobile app for task management with cloud sync and notifications.</p>
+                            <p><small class="text-muted"><strong>Tech:</strong> React Native, Firebase</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="lead mb-4">I'd love to hear from you! Feel free to reach out through any of these channels.</p>
+            
+            <div class="social-links mb-4">
+                <a href="mailto:your.email@example.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                <a href="https://github.com/yourusername" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank" title="Twitter"><i class="bi bi-twitter"></i></a>
+            </div>
+
+            <p class="mb-0"><i class="bi bi-geo-alt-fill me-2"></i>Provo, Utah</p>
+            <p><i class="bi bi-telephone-fill me-2"></i>(555) 123-4567</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 [Your Name]. All Rights Reserved.</p>
+            <p class="mb-0"><small>Built with Bootstrap | Hosted on GitHub Pages</small></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.opacity = '0.95';
+            } else {
+                navbar.style.opacity = '1';
+            }
+        });
+    </script>
+</body>
+</html>
