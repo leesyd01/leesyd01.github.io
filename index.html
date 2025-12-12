@@ -1,289 +1,415 @@
+<!-- portfolio -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Hobbies - Mountain Hiking</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Your Name - Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
-        /* Custom stylesheet - created from scratch */
+        :root {
+            --primary-color: #667eea;
+            --secondary-color: #764ba2;
+        }
+
         body {
-            font-family: 'Georgia', serif;
-            color: #2c3e50;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
-                              url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><rect fill="%23f0f0f0" width="50" height="50"/><rect fill="%23e0e0e0" x="50" width="50" height="50"/><rect fill="%23e0e0e0" y="50" width="50" height="50"/><rect fill="%23f0f0f0" x="50" y="50" width="50" height="50"/></svg>');
-            background-size: 100px 100px;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        h1 {
-            font-family: 'Arial', sans-serif;
-            color: #16a085;
-            text-align: center;
-            padding: 2rem 0;
-            background-color: #ecf0f1;
-            margin: 0;
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
-        h2 {
-            font-family: 'Verdana', sans-serif;
-            color: #27ae60;
-            border-bottom: 3px solid #27ae60;
-            padding-bottom: 0.5rem;
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 100px 0 80px 0;
+            margin-top: 56px;
         }
 
-        p {
-            color: #34495e;
-            font-size: 1.1rem;
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
-        a {
-            color: #3498db;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            color: #2980b9;
-            text-decoration: underline;
-        }
-
-        /* Div for positioning and styling blocks of content */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-            background-color: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .navigation {
-            background-color: #34495e;
-            padding: 1rem;
-            text-align: center;
+        .hero-section p {
+            font-size: 1.3rem;
             margin-bottom: 2rem;
         }
 
-        .navigation a {
-            color: white;
-            margin: 0 1rem;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            border-radius: 2px;
+        }
+
+        .resume-section {
+            padding: 60px 0;
+        }
+
+        .resume-item {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .resume-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .resume-item h4 {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .resume-item .company {
+            color: var(--secondary-color);
+            font-weight: 600;
             font-size: 1.1rem;
         }
 
-        .content-block {
-            margin: 2rem 0;
-            padding: 1.5rem;
-            background-color: #f8f9fa;
-            border-left: 5px solid #16a085;
-            border-radius: 5px;
+        .resume-item .date {
+            color: #6c757d;
+            font-style: italic;
+            margin-bottom: 0.5rem;
         }
 
-        .image-gallery {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 2rem 0;
+        .skill-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
         }
 
-        .image-gallery img {
-            max-width: 300px;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .project-card {
+            transition: transform 0.3s;
+            height: 100%;
+            border: none;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .project-card .card-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
             transition: transform 0.3s;
         }
 
-        .image-gallery img:hover {
-            transform: scale(1.05);
+        .social-links a:hover {
+            transform: scale(1.1);
+            text-decoration: none;
         }
 
-        .video-container {
-            text-align: center;
-            margin: 2rem 0;
+        footer {
+            background: #343a40;
+            color: white;
+            padding: 2rem 0;
+            margin-top: 4rem;
         }
 
-        .video-container iframe {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        .btn-custom {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: transform 0.3s;
         }
 
-        .tableau-container {
-            margin: 2rem 0;
-            text-align: center;
-        }
-
-        ul {
-            list-style-type: disc;
-            margin-left: 2rem;
-        }
-
-        ol {
-            list-style-type: decimal;
-            margin-left: 2rem;
-        }
-
-        li {
-            margin: 0.5rem 0;
+        .btn-custom:hover {
+            transform: translateY(-2px);
+            color: white;
         }
     </style>
 </head>
 <body>
-    <div class="navigation">
-        <a href="index.html">← Back to Professional Portfolio</a>
-        <a href="#top">Top</a>
-        <a href="#gear">Gear</a>
-        <a href="#video">Video</a>
-        <a href="#tableau">Data</a>
-        <a href="webapp.html">Web App</a>
-    </div>
-
-    <h1 id="top">My Passion: Mountain Hiking</h1>
-
-    <div class="container">
-        <div class="content-block">
-            <h2>Why I Love Hiking</h2>
-            <p>Hiking has been my favorite outdoor activity for years. There's something incredibly peaceful about being surrounded by nature, breathing fresh mountain air, and challenging yourself physically while enjoying stunning views. Whether it's a short day hike or a multi-day backpacking trip, every adventure brings new experiences and memories.</p>
-        </div>
-
-        <div class="image-gallery">
-            <img src="https://images.unsplash.com/photo-1551632811-561732d1e306?w=400" alt="Mountain trail with hiker">
-            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400" alt="Mountain peak at sunset">
-            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400" alt="Mountain landscape">
-        </div>
-
-        <div class="content-block" id="gear">
-            <h2>Essential Hiking Gear</h2>
-            <p>Here's my checklist for a successful hiking trip, organized by priority:</p>
-            
-            <!-- Ordered list embedded with unordered list -->
-            <ol>
-                <li><strong>Safety Essentials</strong>
-                    <ul>
-                        <li>First aid kit</li>
-                        <li>Navigation tools (map, compass, GPS)</li>
-                        <li>Emergency whistle</li>
-                        <li>Headlamp with extra batteries</li>
-                    </ul>
-                </li>
-                <li><strong>Clothing & Footwear</strong>
-                    <ul>
-                        <li>Moisture-wicking base layers</li>
-                        <li>Insulating mid-layers</li>
-                        <li>Waterproof jacket</li>
-                        <li>Sturdy hiking boots</li>
-                    </ul>
-                </li>
-                <li><strong>Food & Water</strong>
-                    <ul>
-                        <li>Water bottles or hydration system</li>
-                        <li>Water purification tablets</li>
-                        <li>High-energy snacks</li>
-                        <li>Packed lunch</li>
-                    </ul>
-                </li>
-                <li><strong>Other Equipment</strong>
-                    <ul>
-                        <li>Backpack (appropriate size)</li>
-                        <li>Trekking poles</li>
-                        <li>Sun protection (sunscreen, hat, sunglasses)</li>
-                        <li>Multi-tool or knife</li>
-                    </ul>
-                </li>
-            </ol>
-        </div>
-
-        <div class="content-block" id="video">
-            <h2>Inspiration: Beautiful Mountain Trails</h2>
-            <p>This video showcases some of the most breathtaking mountain trails around the world. It captures the essence of why I love hiking so much!</p>
-            
-            <!-- Embedded YouTube video -->
-            <div class="video-container">
-                <iframe width="560" height="315" 
-                        src="https://www.youtube.com/embed/lX6JcybgDFo" 
-                        title="Mountain Hiking Video" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                </iframe>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Your Name</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#resume">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
             </div>
         </div>
+    </nav>
 
-        <div class="content-block" id="tableau">
-            <h2>Hiking Data Visualization</h2>
-            <p>Here's an interactive Tableau visualization showing hiking trail statistics. You can explore different metrics and filter by various categories.</p>
-            
-            <!-- Embedded Tableau visualization -->
-            <div class="tableau-container">
-                <div class='tableauPlaceholder' id='viz1234567890' style='position: relative'>
-                    <noscript>
-                        <a href='#'><img alt='Popular Hiking Trails Dashboard' 
-                        src='https://public.tableau.com/static/images/Hi/HikingTrails/Dashboard1/1_rss.png' 
-                        style='border: none' /></a>
-                    </noscript>
-                    <object class='tableauViz' style='display:none;'>
-                        <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
-                        <param name='embed_code_version' value='3' />
-                        <param name='site_root' value='' />
-                        <param name='name' value='WorldIndicators/GDPpercapita' />
-                        <param name='tabs' value='no' />
-                        <param name='toolbar' value='yes' />
-                        <param name='static_image' value='https://public.tableau.com/static/images/Wo/WorldIndicators/GDPpercapita/1.png' />
-                        <param name='animate_transition' value='yes' />
-                        <param name='display_static_image' value='yes' />
-                        <param name='display_spinner' value='yes' />
-                        <param name='display_overlay' value='yes' />
-                        <param name='display_count' value='yes' />
-                        <param name='language' value='en-US' />
-                    </object>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1>Hello, I'm [Your Name]</h1>
+            <p class="lead">Information Systems Student | Developer | Problem Solver</p>
+            <a href="#resume" class="btn btn-light btn-lg">View My Resume</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <p class="lead">I'm a passionate Information Systems student with a strong interest in technology, data analysis, and software development. I enjoy solving complex problems and building solutions that make a real impact.</p>
+                    <p>Throughout my academic journey, I've developed a diverse skill set spanning web development, database management, programming, and system analysis. I'm always eager to learn new technologies and take on challenging projects.</p>
                 </div>
-                <script type='text/javascript'>
-                    var divElement = document.getElementById('viz1234567890');
-                    var vizElement = divElement.getElementsByTagName('object')[0];
-                    if (divElement.offsetWidth > 800) {
-                        vizElement.style.width = '100%';
-                        vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-                    } else if (divElement.offsetWidth > 500) {
-                        vizElement.style.width = '100%';
-                        vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px';
-                    } else {
-                        vizElement.style.width = '100%';
-                        vizElement.style.height = '727px';
-                    }
-                    var scriptElement = document.createElement('script');
-                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
-                    divElement.parentNode.insertBefore(scriptElement, divElement);
-                </script>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600" alt="Technology" class="img-fluid rounded shadow">
+                </div>
             </div>
-            <p><em>Note: You'll need to replace this with your chosen Tableau visualization. Visit <a href="https://public.tableau.com/app/discover" target="_blank">Tableau Public Gallery</a> to find one you like, then click "Share" and copy the embed code.</em></p>
         </div>
+    </section>
 
-        <div class="content-block">
-            <h2>My Favorite Trails</h2>
-            <p>Over the years, I've hiked many amazing trails. Here are my top three favorites:</p>
-            <ul>
-                <li><strong>Angels Landing, Zion National Park</strong> - Thrilling chains and incredible views</li>
-                <li><strong>Half Dome, Yosemite</strong> - Challenging but absolutely worth it</li>
-                <li><strong>The Narrows, Zion</strong> - Unique river hiking experience</li>
-            </ul>
+    <!-- Resume Section -->
+    <section id="resume" class="resume-section bg-light">
+        <div class="container">
+            <h2 class="section-title">Resume</h2>
+            
+            <!-- Education -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-mortarboard-fill me-2"></i>Education</h3>
+                <div class="resume-item">
+                    <h4>Bachelor of Science in Information Systems</h4>
+                    <p class="company">Your University</p>
+                    <p class="date">Expected Graduation: May 2025</p>
+                    <ul>
+                        <li>GPA: 3.7/4.0</li>
+                        <li>Relevant Coursework: Database Management, Web Development, Data Analytics, Systems Analysis, Software Engineering</li>
+                        <li>Dean's List: Fall 2023, Spring 2024</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Experience -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-briefcase-fill me-2"></i>Experience</h3>
+                
+                <div class="resume-item">
+                    <h4>IT Intern</h4>
+                    <p class="company">ABC Technology Company</p>
+                    <p class="date">May 2024 - August 2024</p>
+                    <ul>
+                        <li>Assisted in developing and maintaining internal web applications using HTML, CSS, and JavaScript</li>
+                        <li>Collaborated with database administrators to optimize SQL queries, improving performance by 25%</li>
+                        <li>Provided technical support to 50+ employees, resolving hardware and software issues</li>
+                        <li>Documented IT procedures and created user guides for new software implementations</li>
+                    </ul>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Student Technology Assistant</h4>
+                    <p class="company">University IT Department</p>
+                    <p class="date">September 2023 - Present</p>
+                    <ul>
+                        <li>Support students and faculty with technical issues in computer labs</li>
+                        <li>Maintain and troubleshoot hardware and software systems</li>
+                        <li>Train new student assistants on support procedures and ticketing systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Skills -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-gear-fill me-2"></i>Technical Skills</h3>
+                <div class="resume-item">
+                    <h4>Programming & Development</h4>
+                    <span class="skill-badge">HTML/CSS</span>
+                    <span class="skill-badge">JavaScript</span>
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">Java</span>
+                    <span class="skill-badge">React</span>
+                    <span class="skill-badge">Node.js</span>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Database & Data Analysis</h4>
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">MySQL</span>
+                    <span class="skill-badge">MongoDB</span>
+                    <span class="skill-badge">Tableau</span>
+                    <span class="skill-badge">Excel</span>
+                    <span class="skill-badge">Power BI</span>
+                </div>
+
+                <div class="resume-item">
+                    <h4>Tools & Platforms</h4>
+                    <span class="skill-badge">Git/GitHub</span>
+                    <span class="skill-badge">VS Code</span>
+                    <span class="skill-badge">Jira</span>
+                    <span class="skill-badge">AWS</span>
+                    <span class="skill-badge">Docker</span>
+                </div>
+            </div>
+
+            <!-- Awards & Honors -->
+            <div class="mb-5">
+                <h3 class="mb-4"><i class="bi bi-trophy-fill me-2"></i>Awards & Honors</h3>
+                <div class="resume-item">
+                    <ul>
+                        <li><strong>Dean's List</strong> - Fall 2023, Spring 2024</li>
+                        <li><strong>Academic Scholarship</strong> - Merit-based scholarship for academic excellence (2023-2024)</li>
+                        <li><strong>Hackathon Winner</strong> - 1st Place, University Tech Challenge (Spring 2024)</li>
+                        <li><strong>IS Student Organization</strong> - Vice President (2024-2025)</li>
+                    </ul>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="content-block">
-            <h2>Interactive Web App</h2>
-            <p>Check out my <a href="webapp.html">hiking trail difficulty calculator</a> - a small web app I created to help plan hiking adventures!</p>
+    <!-- Projects Section -->
+    <section id="projects" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <i class="bi bi-globe me-2"></i>E-Commerce Website
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Full-stack e-commerce platform with user authentication, shopping cart, and payment integration.</p>
+                            <p><small class="text-muted"><strong>Tech:</strong> React, Node.js, MongoDB</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <i class="bi bi-graph-up me-2"></i>Sales Analytics Dashboard
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Interactive dashboard visualizing sales data with filters, charts, and predictive analytics.</p>
+                            <p><small class="text-muted"><strong>Tech:</strong> Python, Tableau, SQL</small></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card project-card">
+                        <div class="card-header">
+                            <i class="bi bi-phone me-2"></i>Mobile Task Manager
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text">Cross-platform mobile app for task management with cloud sync and notifications.</p>
+                            <p><small class="text-muted"><strong>Tech:</strong> React Native, Firebase</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- On-page anchor link at the bottom -->
-    <div style="text-align: center; padding: 2rem; background-color: #34495e;">
-        <a href="#top" style="color: white; font-size: 1.2rem;">↑ Back to Top</a>
-    </div>
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container text-center">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="lead mb-4">I'd love to hear from you! Feel free to reach out through any of these channels.</p>
+            
+            <div class="social-links mb-4">
+                <a href="mailto:your.email@example.com" title="Email"><i class="bi bi-envelope-fill"></i></a>
+                <a href="https://github.com/yourusername" target="_blank" title="GitHub"><i class="bi bi-github"></i></a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                <a href="https://twitter.com/yourusername" target="_blank" title="Twitter"><i class="bi bi-twitter"></i></a>
+            </div>
 
-    <footer style="text-align: center; padding: 1rem; background-color: #2c3e50; color: white;">
-        <p>&copy; 2024 - Created for IS Final Project</p>
+            <p class="mb-0"><i class="bi bi-geo-alt-fill me-2"></i>Provo, Utah</p>
+            <p><i class="bi bi-telephone-fill me-2"></i>(555) 123-4567</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2024 [Your Name]. All Rights Reserved.</p>
+            <p class="mb-0"><small>Built with Bootstrap | Hosted on GitHub Pages</small></p>
+        </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.opacity = '0.95';
+            } else {
+                navbar.style.opacity = '1';
+            }
+        });
+    </script>
 </body>
 </html>
